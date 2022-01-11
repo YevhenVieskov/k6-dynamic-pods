@@ -1,0 +1,18 @@
+FROM golang:1.14-alpine as builder
+WORKDIR $GOPATH/src/github.com/loadimpact/k6
+ADD . .
+RUN apk --no-cache add git
+RUN CGO_ENABLED=0 go install -a -trimpath -ldflags "-s -w -X github.com/loadimpact/k6/lib/consts.VersionDetails=$(date -u +"%FT%T%z")/$(git describe --always --long --dirty)"
+ 
+#can't load package: package github.com/loadimpact/k6: no Go files in /go/src/github.com/loadimpact/k6
+
+#install prometheus extension 
+RUN go install go.k6.io/xk6/cmd/xk6@latest
+RUN xk6 build --with github.com/grafana/xk6-output-prometheus-remote
+
+FROM alpine:3.11
+RUN apk add --no-cache ca-certificates && \
+    adduser -D -u 12345 -g 12345 k6
+COPY --from=builder /go/bin/k6 /usr/bin/k6
+ 
+USER 12345
