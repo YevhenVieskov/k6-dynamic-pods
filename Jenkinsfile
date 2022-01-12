@@ -38,10 +38,13 @@ pipeline {
               node('k6node') {
                 stage("Stage-${i}") {
                   container('k6') {
-                    sh "wget --header='Authorization: token $GIT_TOKEN' --header='Accept: application/vnd.github.v3.raw' ${params.GIT_RAW_FILE} --output-document=pt.js"
+                    //sh "wget --header='Authorization: token $GIT_TOKEN' --header='Accept: application/vnd.github.v3.raw' ${params.GIT_RAW_FILE} --output-document=pt.js"
                     //wget --http-user=USERNAME --http-password=PASSWORD http://SOMETURLTOFILE
                     //sh "k6 run pt.js --duration ${params.DURATION} --vus ${params.VIRTUAL_USER} --out influxdb=${params.INFLUX_DB}"
-                    sh "k6 run pt.js --duration ${params.DURATION} --vus ${params.VIRTUAL_USER} --out ${JENKINS_HOME}/results.json"
+                    //sh "k6 run pt.js --duration ${params.DURATION} --vus ${params.VIRTUAL_USER} --out ${JENKINS_HOME}/results.json"
+                    echo 'Running K6 performance tests...'
+                    sh "k6 run --out json=${JENKINS_HOME}/results-${i}.json loadtests/performance-test.js "
+
                   }
                 }
               }
@@ -54,7 +57,7 @@ pipeline {
 
     stage('Convertation of Testing Results') {
       steps {
-          k6JsonToJunitXml("${JENKINS_HOME}/results.json", "${JENKINS_HOME}/output.xml")
+          k6JsonToJunitXml("${JENKINS_HOME}/results-0.json", "${JENKINS_HOME}/output-0.xml")
       }
       post {
 				  always {							
