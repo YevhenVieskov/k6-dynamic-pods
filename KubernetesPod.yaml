@@ -5,13 +5,13 @@ metadata:
   labels:
     app: k6
 spec:
-  namespace: default
+  namespace: jenkins
   affinity:
     podAntiAffinity:
       preferredDuringSchedulingIgnoredDuringExecution:
       - weight: 100
         podAffinityTerm:
-          namespace: default
+          namespace: jenkins
           topologyKey: kubernetes.io/hostname
           labelSelector:
             matchExpressions:
@@ -22,7 +22,7 @@ spec:
                   - k6node
   containers:
   - name: k6
-    image: loadimpact/k6                                    #your.docker_registry.com/your_org/k6:your_image_version
+    image: loadimpact/k6:latest         #your.docker_registry.com/your_org/k6:your_image_version
     resources:
       requests:
           cpu: "100m"
