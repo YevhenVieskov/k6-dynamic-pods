@@ -22,7 +22,7 @@ pipeline {
 
     stage("Checkout") {			 
       steps {
-          git credentialsId: 'github-token', url: 'https://github.com/YevhenVieskov/k6-dynamic-pods.git', branch: 'main' 
+          git credentialsId: 'jenkins-kub-jenkins-monitor', url: 'https://github.com/YevhenVieskov/k6-dynamic-pods.git', branch: 'main' 
         }
 	  } 
 

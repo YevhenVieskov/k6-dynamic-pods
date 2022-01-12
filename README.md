@@ -59,3 +59,6 @@ You can verify each pod is running the k6 script by attaching into the shell of 
 
 2. [k6 Prometheus Exporter] (https://github.com/benc-uk/k6-prometheus-exporter)
 3. https://github.com/grafana/xk6-output-prometheus-remote
+
+
+checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github-token', url: 'https://github.com/YevhenVieskov/k6-dynamic-pods.git']]]
