@@ -75,6 +75,29 @@ You can verify each pod is running the k6 script by attaching into the shell of 
 11. https://github.com/benc-uk/k6-prometheus-exporter/blob/main/deploy/example-job.yaml
 
 
+12. Kubernetes — изучаем паттерн Sidecar https://habr.com/ru/company/nixys/blog/559368/
+
+13. Kubernetes — Learn Adapter Container Pattern https://medium.com/bb-tutorials-and-thoughts/kubernetes-learn-adaptor-container-pattern-97674285983c
+
+14. Kubernetes — Learn Sidecar Container Pattern https://medium.com/bb-tutorials-and-thoughts/kubernetes-learn-sidecar-container-pattern-6d8c21f873d
+
+15. Differences between Sidecar and Ambassador and Adapter pattern https://stackoverflow.com/questions/59451056/differences-between-sidecar-and-ambassador-and-adapter-pattern
+
+Multi-container design patterns
+
+Sidecar pattern
+
+An extra container in your pod to enhance or extend the functionality of the main container.
+
+Ambassador pattern
+
+A container that proxy the network connection to the main container.
+
+Adapter pattern
+
+A container that transform output of the main container.
+
+This is taken from the original article from 2015: Patterns for Composite Containers
 
 docker build -t vieskov1980/k6pm .
 Sending build context to Docker daemon  1.003MB

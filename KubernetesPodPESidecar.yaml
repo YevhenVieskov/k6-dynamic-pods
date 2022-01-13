@@ -10,8 +10,8 @@ spec:
       metadata:
         # These are important, for Prometheus to pick up the data
         annotations:
-        prometheus.io/port: '2112'
-        prometheus.io/scrape: 'true'
+          prometheus.io/port: '2112'
+          prometheus.io/scrape: 'true'
   affinity:
     podAntiAffinity:
       preferredDuringSchedulingIgnoredDuringExecution:
