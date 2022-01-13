@@ -1,0 +1,285 @@
+Started by user unknown or anonymous
+Obtained Jenkinsfile from git git@github.com:YevhenVieskov/k6-dynamic-pods.git
+Loading library k6jkmonitoring@main
+Attempting to resolve main from remote references...
+ > git --version # timeout=10
+ > git --version # 'git version 2.30.2'
+using GIT_SSH to set credentials jenkins-kub-jenkins-monitor
+ > git ls-remote -h -- git@github.com:YevhenVieskov/k6jkmonitoring.git # timeout=10
+Found match: refs/heads/main revision 34ae0536481cd48da6d252fdf2535c3ddbc1a5c7
+The recommended git tool is: NONE
+using credential jenkins-kub-jenkins-monitor
+ > git rev-parse --resolve-git-dir /var/jenkins_home/workspace/dynamic-pods@libs/k6jkmonitoring/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url git@github.com:YevhenVieskov/k6jkmonitoring.git # timeout=10
+Fetching without tags
+Fetching upstream changes from git@github.com:YevhenVieskov/k6jkmonitoring.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.30.2'
+using GIT_SSH to set credentials jenkins-kub-jenkins-monitor
+ > git fetch --no-tags --force --progress -- git@github.com:YevhenVieskov/k6jkmonitoring.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+Checking out Revision 34ae0536481cd48da6d252fdf2535c3ddbc1a5c7 (main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 34ae0536481cd48da6d252fdf2535c3ddbc1a5c7 # timeout=10
+Commit message: "jenkins shared lib rary is added"
+ > git rev-list --no-walk 34ae0536481cd48da6d252fdf2535c3ddbc1a5c7 # timeout=10
+[Pipeline] Start of Pipeline
+[Pipeline] properties
+[Pipeline] readTrusted
+Obtained KubernetesPod.yaml from git git@github.com:YevhenVieskov/k6-dynamic-pods.git
+[Pipeline] podTemplate
+[Pipeline] {
+[Pipeline] node
+Created Pod: kubernetes jenkins/dynamic-pods-12-p6n2s-vt4jp-pd5pf
+jenkins/dynamic-pods-12-p6n2s-vt4jp-pd5pf Container k6 was terminated (Exit Code: 0, Reason: Completed)
+Created Pod: kubernetes jenkins/dynamic-pods-12-p6n2s-vt4jp-3c8c3
+Still waiting to schedule task
+‘dynamic-pods-12-p6n2s-vt4jp-3c8c3’ is offline
+jenkins/dynamic-pods-12-p6n2s-vt4jp-3c8c3 Container k6 was terminated (Exit Code: 0, Reason: Completed)
+
+Created Pod: kubernetes jenkins/dynamic-pods-12-p6n2s-vt4jp-mbxt8
+
+jenkins/dynamic-pods-12-p6n2s-vt4jp-mbxt8 Container k6 was terminated (Exit Code: 0, Reason: Completed)
+
+Created Pod: kubernetes jenkins/dynamic-pods-12-p6n2s-vt4jp-kllfq
+
+jenkins/dynamic-pods-12-p6n2s-vt4jp-kllfq Container k6 was terminated (Exit Code: 0, Reason: Completed)
+
+Created Pod: kubernetes jenkins/dynamic-pods-12-p6n2s-vt4jp-c2wcd
+
+jenkins/dynamic-pods-12-p6n2s-vt4jp-c2wcd Container k6 was terminated (Exit Code: 0, Reason: Completed)
+
+Created Pod: kubernetes jenkins/dynamic-pods-12-p6n2s-vt4jp-02wrc
+
+jenkins/dynamic-pods-12-p6n2s-vt4jp-02wrc Container k6 was terminated (Exit Code: 0, Reason: Completed)
+
+Created Pod: kubernetes jenkins/dynamic-pods-12-p6n2s-vt4jp-4188z
+
+jenkins/dynamic-pods-12-p6n2s-vt4jp-4188z Container k6 was terminated (Exit Code: 0, Reason: Completed)
+
+Created Pod: kubernetes jenkins/dynamic-pods-12-p6n2s-vt4jp-6s4zs
+
+jenkins/dynamic-pods-12-p6n2s-vt4jp-6s4zs Container k6 was terminated (Exit Code: 0, Reason: Completed)
+
+Created Pod: kubernetes jenkins/dynamic-pods-12-p6n2s-vt4jp-591nm
+
+jenkins/dynamic-pods-12-p6n2s-vt4jp-591nm Container k6 was terminated (Exit Code: 0, Reason: Completed)
+
+Created Pod: kubernetes jenkins/dynamic-pods-12-p6n2s-vt4jp-jv5g4
+
+jenkins/dynamic-pods-12-p6n2s-vt4jp-jv5g4 Container k6 was terminated (Exit Code: 0, Reason: Completed)
+
+Created Pod: kubernetes jenkins/dynamic-pods-12-p6n2s-vt4jp-bqf9m
+Unable to provision agent dynamic-pods-12-p6n2s-vt4jp-pd5pf :
+
+- jnlp -- terminated (255)
+-----Logs-------------
+Jan 13, 2022 9:32:20 AM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Protocol JNLP4-connect encountered an unexpected exception
+java.util.concurrent.ExecutionException: org.jenkinsci.remoting.protocol.impl.ConnectionRefusalException: Unknown client name: dynamic-pods-12-p6n2s-vt4jp-pd5pf
+	at org.jenkinsci.remoting.util.SettableFuture.get(SettableFuture.java:223)
+	at hudson.remoting.Engine.innerRun(Engine.java:778)
+	at hudson.remoting.Engine.run(Engine.java:540)
+Caused by: org.jenkinsci.remoting.protocol.impl.ConnectionRefusalException: Unknown client name: dynamic-pods-12-p6n2s-vt4jp-pd5pf
+	at org.jenkinsci.remoting.protocol.impl.ConnectionHeadersFilterLayer.newAbortCause(ConnectionHeadersFilterLayer.java:378)
+	at org.jenkinsci.remoting.protocol.impl.ConnectionHeadersFilterLayer.onRecvClosed(ConnectionHeadersFilterLayer.java:433)
+	at org.jenkinsci.remoting.protocol.ProtocolStack$Ptr.onRecvClosed(ProtocolStack.java:825)
+	at org.jenkinsci.remoting.protocol.FilterLayer.onRecvClosed(FilterLayer.java:288)
+	at org.jenkinsci.remoting.protocol.impl.SSLEngineFilterLayer.onRecvClosed(SSLEngineFilterLayer.java:170)
+	at org.jenkinsci.remoting.protocol.ProtocolStack$Ptr.onRecvClosed(ProtocolStack.java:825)
+	at org.jenkinsci.remoting.protocol.NetworkLayer.onRecvClosed(NetworkLayer.java:154)
+	at org.jenkinsci.remoting.protocol.impl.BIONetworkLayer.access$1500(BIONetworkLayer.java:49)
+	at org.jenkinsci.remoting.protocol.impl.BIONetworkLayer$Reader.run(BIONetworkLayer.java:255)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at hudson.remoting.Engine$1.lambda$newThread$0(Engine.java:122)
+	at java.base/java.lang.Thread.run(Unknown Source)
+	Suppressed: java.nio.channels.ClosedChannelException
+		... 7 more
+
+Jan 13, 2022 9:32:20 AM hudson.remoting.jnlp.Main$CuiListener error
+SEVERE: The server rejected the connection: None of the protocols were accepted
+java.lang.Exception: The server rejected the connection: None of the protocols were accepted
+	at hudson.remoting.Engine.onConnectionRejected(Engine.java:864)
+	at hudson.remoting.Engine.innerRun(Engine.java:804)
+	at hudson.remoting.Engine.run(Engine.java:540)
+
+
+
+- k6 -- terminated (0)
+-----Logs-------------
+
+Usage:
+  k6 [command]
+
+Available Commands:
+  archive     Create an archive
+  cloud       Run a test on the cloud
+  convert     Convert a HAR file to a k6 script
+  help        Help about any command
+  inspect     Inspect a script or archive
+  login       Authenticate with a service
+  pause       Pause a running test
+  resume      Resume a paused test
+  run         Start a load test
+  scale       Scale a running test
+  stats       Show test metrics
+  status      Show test status
+  version     Show application version
+
+Flags:
+  -a, --address string      address for the api server (default "localhost:6565")
+  -c, --config string       JSON config file (default "/root/.config/loadimpact/k6/config.json")
+  -h, --help                help for k6
+      --log-output string   change the output for k6 logs, possible values are stderr,stdout,none,loki[=host:port] (default "stderr")
+      --logformat string    log output format
+      --no-color            disable colored output
+  -q, --quiet               disable progress updates
+  -v, --verbose             enable verbose logging
+
+Use "k6 [command] --help" for more information about a command.
+
+jenkins/dynamic-pods-12-p6n2s-vt4jp-bqf9m Container k6 was terminated (Exit Code: 0, Reason: Completed)
+
+Created Pod: kubernetes jenkins/dynamic-pods-12-p6n2s-vt4jp-0sl7r
+Unable to provision agent dynamic-pods-12-p6n2s-vt4jp-3c8c3 :
+
+- jnlp -- terminated (255)
+-----Logs-------------
+Jan 13, 2022 9:32:19 AM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Protocol JNLP4-connect encountered an unexpected exception
+java.util.concurrent.ExecutionException: org.jenkinsci.remoting.protocol.impl.ConnectionRefusalException: Unknown client name: dynamic-pods-12-p6n2s-vt4jp-3c8c3
+	at org.jenkinsci.remoting.util.SettableFuture.get(SettableFuture.java:223)
+	at hudson.remoting.Engine.innerRun(Engine.java:778)
+	at hudson.remoting.Engine.run(Engine.java:540)
+Caused by: org.jenkinsci.remoting.protocol.impl.ConnectionRefusalException: Unknown client name: dynamic-pods-12-p6n2s-vt4jp-3c8c3
+	at org.jenkinsci.remoting.protocol.impl.ConnectionHeadersFilterLayer.newAbortCause(ConnectionHeadersFilterLayer.java:378)
+	at org.jenkinsci.remoting.protocol.impl.ConnectionHeadersFilterLayer.onRecvClosed(ConnectionHeadersFilterLayer.java:433)
+	at org.jenkinsci.remoting.protocol.ProtocolStack$Ptr.onRecvClosed(ProtocolStack.java:825)
+	at org.jenkinsci.remoting.protocol.FilterLayer.onRecvClosed(FilterLayer.java:288)
+	at org.jenkinsci.remoting.protocol.impl.SSLEngineFilterLayer.onRecvClosed(SSLEngineFilterLayer.java:170)
+	at org.jenkinsci.remoting.protocol.ProtocolStack$Ptr.onRecvClosed(ProtocolStack.java:825)
+	at org.jenkinsci.remoting.protocol.NetworkLayer.onRecvClosed(NetworkLayer.java:154)
+	at org.jenkinsci.remoting.protocol.impl.BIONetworkLayer.access$1500(BIONetworkLayer.java:49)
+	at org.jenkinsci.remoting.protocol.impl.BIONetworkLayer$Reader.run(BIONetworkLayer.java:255)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at hudson.remoting.Engine$1.lambda$newThread$0(Engine.java:122)
+	at java.base/java.lang.Thread.run(Unknown Source)
+	Suppressed: java.nio.channels.ClosedChannelException
+		... 7 more
+
+Jan 13, 2022 9:32:19 AM hudson.remoting.jnlp.Main$CuiListener error
+SEVERE: The server rejected the connection: None of the protocols were accepted
+java.lang.Exception: The server rejected the connection: None of the protocols were accepted
+	at hudson.remoting.Engine.onConnectionRejected(Engine.java:864)
+	at hudson.remoting.Engine.innerRun(Engine.java:804)
+	at hudson.remoting.Engine.run(Engine.java:540)
+
+
+
+- k6 -- terminated (0)
+-----Logs-------------
+
+Usage:
+  k6 [command]
+
+Available Commands:
+  archive     Create an archive
+  cloud       Run a test on the cloud
+  convert     Convert a HAR file to a k6 script
+  help        Help about any command
+  inspect     Inspect a script or archive
+  login       Authenticate with a service
+  pause       Pause a running test
+  resume      Resume a paused test
+  run         Start a load test
+  scale       Scale a running test
+  stats       Show test metrics
+  status      Show test status
+  version     Show application version
+
+Flags:
+  -a, --address string      address for the api server (default "localhost:6565")
+  -c, --config string       JSON config file (default "/root/.config/loadimpact/k6/config.json")
+  -h, --help                help for k6
+      --log-output string   change the output for k6 logs, possible values are stderr,stdout,none,loki[=host:port] (default "stderr")
+      --logformat string    log output format
+      --no-color            disable colored output
+  -q, --quiet               disable progress updates
+  -v, --verbose             enable verbose logging
+
+Use "k6 [command] --help" for more information about a command.
+
+jenkins/dynamic-pods-12-p6n2s-vt4jp-0sl7r Container k6 was terminated (Exit Code: 0, Reason: Completed)
+
+Created Pod: kubernetes jenkins/dynamic-pods-12-p6n2s-vt4jp-93dlr
+Unable to provision agent dynamic-pods-12-p6n2s-vt4jp-mbxt8 :
+
+- jnlp -- terminated (255)
+-----Logs-------------
+Jan 13, 2022 9:32:29 AM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Protocol JNLP4-connect encountered an unexpected exception
+java.util.concurrent.ExecutionException: org.jenkinsci.remoting.protocol.impl.ConnectionRefusalException: Unknown client name: dynamic-pods-12-p6n2s-vt4jp-mbxt8
+	at org.jenkinsci.remoting.util.SettableFuture.get(SettableFuture.java:223)
+	at hudson.remoting.Engine.innerRun(Engine.java:778)
+	at hudson.remoting.Engine.run(Engine.java:540)
+Caused by: org.jenkinsci.remoting.protocol.impl.ConnectionRefusalException: Unknown client name: dynamic-pods-12-p6n2s-vt4jp-mbxt8
+	at org.jenkinsci.remoting.protocol.impl.ConnectionHeadersFilterLayer.newAbortCause(ConnectionHeadersFilterLayer.java:378)
+	at org.jenkinsci.remoting.protocol.impl.ConnectionHeadersFilterLayer.onRecvClosed(ConnectionHeadersFilterLayer.java:433)
+	at org.jenkinsci.remoting.protocol.ProtocolStack$Ptr.onRecvClosed(ProtocolStack.java:825)
+	at org.jenkinsci.remoting.protocol.FilterLayer.onRecvClosed(FilterLayer.java:288)
+	at org.jenkinsci.remoting.protocol.impl.SSLEngineFilterLayer.onRecvClosed(SSLEngineFilterLayer.java:170)
+	at org.jenkinsci.remoting.protocol.ProtocolStack$Ptr.onRecvClosed(ProtocolStack.java:825)
+	at org.jenkinsci.remoting.protocol.NetworkLayer.onRecvClosed(NetworkLayer.java:154)
+	at org.jenkinsci.remoting.protocol.impl.BIONetworkLayer.access$1500(BIONetworkLayer.java:49)
+	at org.jenkinsci.remoting.protocol.impl.BIONetworkLayer$Reader.run(BIONetworkLayer.java:255)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at hudson.remoting.Engine$1.lambda$newThread$0(Engine.java:122)
+	at java.base/java.lang.Thread.run(Unknown Source)
+	Suppressed: java.nio.channels.ClosedChannelException
+		... 7 more
+
+Jan 13, 2022 9:32:29 AM hudson.remoting.jnlp.Main$CuiListener error
+SEVERE: The server rejected the connection: None of the protocols were accepted
+java.lang.Exception: The server rejected the connection: None of the protocols were accepted
+	at hudson.remoting.Engine.onConnectionRejected(Engine.java:864)
+	at hudson.remoting.Engine.innerRun(Engine.java:804)
+	at hudson.remoting.Engine.run(Engine.java:540)
+
+
+
+- k6 -- terminated (0)
+-----Logs-------------
+
+Usage:
+  k6 [command]
+
+Available Commands:
+  archive     Create an archive
+  cloud       Run a test on the cloud
+  convert     Convert a HAR file to a k6 script
+  help        Help about any command
+  inspect     Inspect a script or archive
+  login       Authenticate with a service
+  pause       Pause a running test
+  resume      Resume a paused test
+  run         Start a load test
+  scale       Scale a running test
+  stats       Show test metrics
+  status      Show test status
+  version     Show application version
+
+Flags:
+  -a, --address string      address for the api server (default "localhost:6565")
+  -c, --config string       JSON config file (default "/root/.config/loadimpact/k6/config.json")
+  -h, --help                help for k6
+      --log-output string   change the output for k6 logs, possible values are stderr,stdout,none,loki[=host:port] (default "stderr")
+      --logformat string    log output format
+      --no-color            disable colored output
+  -q, --quiet               disable progress updates
+  -v, --verbose             enable verbose logging
+
+Use "k6 [command] --help" for more information about a command.
+
