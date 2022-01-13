@@ -22,8 +22,7 @@ spec:
                   - k6node
   containers:
   - name: k6
-    image: loadimpact/k6:latest         #your.docker_registry.com/your_org/k6:your_image_version
-    args: ['run', https://github.com/YevhenVieskov/k6-dynamic-pods/tree/main/loadtests/performance-test.js]
+    image: loadimpact/k6:latest         #your.docker_registry.com/your_org/k6:your_image_version    
     resources:
       requests:
           cpu: "100m"
