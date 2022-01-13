@@ -60,5 +60,52 @@ You can verify each pod is running the k6 script by attaching into the shell of 
 2. [k6 Prometheus Exporter] (https://github.com/benc-uk/k6-prometheus-exporter)
 3. https://github.com/grafana/xk6-output-prometheus-remote
 
+4. How to run sidecar container in jenkins pipeline running inside kubernetes https://stackoverflow.com/questions/54589786/how-to-run-sidecar-container-in-jenkins-pipeline-running-inside-kubernetes
 
-checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github-token', url: 'https://github.com/YevhenVieskov/k6-dynamic-pods.git']]]
+5. Jenkinsfile Pipeline: reach ip of sidecar of host
+
+6. Build your Go image https://docs.docker.com/language/golang/build-images/
+
+7. How To Deploy a Go Web Application with Docker. https://semaphoreci.com/community/tutorials/how-to-deploy-a-go-web-application-with-docker
+
+8. Complete Guide to Create Docker Container for Your Golang Application https://levelup.gitconnected.com/complete-guide-to-create-docker-container-for-your-golang-application-80f3fb59a15e
+
+
+
+docker build -t vieskov1980/k6pm .
+Sending build context to Docker daemon  1.003MB
+Step 1/13 : FROM golang:1.17-alpine as builder
+ ---> e8fc0c5ad389
+Step 2/13 : WORKDIR $GOPATH/src/go.k6.io/k6
+ ---> Using cache
+ ---> bc4d5b99e9b2
+Step 3/13 : ADD . .
+ ---> 4fd46af7e171
+Step 4/13 : RUN apk --no-cache add git
+ ---> Running in 893b00efe62f
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.15/main/x86_64/APKINDEX.tar.gz
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.15/community/x86_64/APKINDEX.tar.gz
+(1/6) Installing brotli-libs (1.0.9-r5)
+(2/6) Installing nghttp2-libs (1.46.0-r0)
+(3/6) Installing libcurl (7.80.0-r0)
+(4/6) Installing expat (2.4.1-r0)
+(5/6) Installing pcre2 (10.39-r0)
+(6/6) Installing git (2.34.1-r0)
+Executing busybox-1.34.1-r3.trigger
+OK: 19 MiB in 21 packages
+Removing intermediate container 893b00efe62f
+ ---> a5bca789301e
+Step 5/13 : RUN CGO_ENABLED=0 go install -a -trimpath -ldflags "-s -w -X go.k6.io/k6/lib/consts.VersionDetails=$(date -u +"%FT%T%z")/$(git describe --always --long --dirty)"
+ ---> Running in 06b8fc7d74cb
+go: cannot find main module, but found .git/config in /go/src/go.k6.io/k6
+	to create a module there, run:
+	go mod init
+The command '/bin/sh -c CGO_ENABLED=0 go install -a -trimpath -ldflags "-s -w -X go.k6.io/k6/lib/consts.VersionDetails=$(date -u +"%FT%T%z")/$(git describe --always --long --dirty)"' returned a non-zero code: 1
+
+
+kubectl exec -it pod-name -- /bin/bash -c " command(s) "
+
+https://www.elastic.co/guide/en/beats/metricbeat/current/configuration-dashboards.html
+
+
+https://blog.pilosus.org/posts/2019/05/24/k8s-volumes-list-copy/
