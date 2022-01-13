@@ -23,7 +23,8 @@ spec:
   containers:
   - name: k6
     image: loadimpact/k6:latest         #your.docker_registry.com/your_org/k6:your_image_version    
-    args: ['run', 'https://raw.githubusercontent.com/benc-uk/k6-prometheus-exporter/main/load-tests/generic.js']
+    #args: ['run', 'https://raw.githubusercontent.com/benc-uk/k6-prometheus-exporter/main/load-tests/generic.js']
+    args: ['run', 'https://raw.githubusercontent.com/loadimpact/k6/master/samples/http_get.js']
     resources:
       requests:
           cpu: "100m"
