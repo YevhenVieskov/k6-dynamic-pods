@@ -72,6 +72,8 @@ You can verify each pod is running the k6 script by attaching into the shell of 
 
 9. Dynamic Jenkins Agent from Kubernetes https://itnext.io/dynamic-jenkins-agent-from-kubernetes-4adb98901906
 10. How to Setup Jenkins Build Agents on Kubernetes Pods https://devopscube.com/jenkins-build-agents-kubernetes/
+11. https://github.com/benc-uk/k6-prometheus-exporter/blob/main/deploy/example-job.yaml
+
 
 
 docker build -t vieskov1980/k6pm .
