@@ -28,14 +28,14 @@ pipeline {
 
     stage('Performance Test') {
       steps {
-        //script {
+        script {
           def stages = [: ]
           echo "Pods count: ${params.POD_COUNT}"
           echo "VUs: ${params.VIRTUAL_USER}"
           echo "Duration: ${params.DURATION}"
           for (int i = 0; i < params.POD_COUNT.toInteger(); i++) {
             stages[i] = {
-              //node('k6node') {
+              node('k6node') {
                 stage("Stage-${i}") {
                   container('k6') {
                     //sh "wget --header='Authorization: token $GIT_TOKEN' --header='Accept: application/vnd.github.v3.raw' ${params.GIT_RAW_FILE} --output-document=pt.js"
@@ -48,10 +48,10 @@ pipeline {
                   }
                 }
               }
-            //node}
+            }
           }
           //parallel stages
-        //script }
+         }
       }
     }
 
