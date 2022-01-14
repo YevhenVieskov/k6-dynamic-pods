@@ -16,6 +16,7 @@ pipeline {
     kubernetes {
       //label 'k6node'
       yamlFile 'KubernetesPod.yaml'
+      defaultContainer 'k6' 
     }
   }
   stages {    
