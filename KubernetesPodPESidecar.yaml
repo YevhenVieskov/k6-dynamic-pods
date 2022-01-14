@@ -29,6 +29,7 @@ spec:
   containers:
   - name: k6
     image: loadimpact/k6:latest         #your.docker_registry.com/your_org/k6:your_image_version
+    command: ["tail","-f","/dev/null"]
     resources:
       requests:
           cpu: "100m"

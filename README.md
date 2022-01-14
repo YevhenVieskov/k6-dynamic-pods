@@ -91,6 +91,15 @@ You can verify each pod is running the k6 script by attaching into the shell of 
 
 19. Dynamic Jenkins Agent from Kubernetes https://itnext.io/dynamic-jenkins-agent-from-kubernetes-4adb98901906
 
+20. https://stackoverflow.com/questions/38486848/kubernetes-jenkins-plugin-slaves-always-offline
+
+21. Detailed steps in deploying K6 on Kubernetes https://programmerall.com/article/31832021067/
+
+22. Client extension for interacting with Kubernetes clusters from your k6 tests. https://golangrepo.com/repo/k6io-xk6-kubernetes
+
+23. https://github.com/YevhenVieskov/k6
+
+
 
 Multi-container design patterns
 

@@ -46,8 +46,7 @@ pipeline {
                     
                     //echo 'Running K6 performance tests...'
                     sh "k6 run ${params.GIT_RAW_FILE}  --duration ${params.DURATION} --vus ${params.VIRTUAL_USER} "
-                    //sh "k6 run loadtests/performance-test.js"                    
-                    //sh "k6 run --out json=${JENKINS_HOME}/results-${i}.json loadtests/performance-test.js "
+                    
 
                   }
                 }
@@ -60,7 +59,7 @@ pipeline {
     }
 
     stage('Convertation of Testing Results') {
-      steps {
+      /*steps {
           k6JsonToJunitXml("${JENKINS_HOME}/results-0.json", "${JENKINS_HOME}/output-0.xml")
       }
       post {
@@ -70,7 +69,7 @@ pipeline {
                   testResults: "${JENKINS_HOME}/output.xml" //'**/test-reports/*.xml'
                   )
               }        
-      }            
+      }   */         
     }
 
   }
