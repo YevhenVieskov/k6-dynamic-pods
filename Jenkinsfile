@@ -46,7 +46,7 @@ pipeline {
                     
                     //echo 'Running K6 performance tests...'
                     sh "k6 run ${params.GIT_RAW_FILE}  --duration ${params.DURATION} --vus ${params.VIRTUAL_USER} "
-                    
+                    sh "k6 run script.js "
 
                   }
                 }
