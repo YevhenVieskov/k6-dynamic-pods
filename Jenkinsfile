@@ -58,19 +58,19 @@ pipeline {
       }
     }
 
-    stage('Convertation of Testing Results') {
-      /*steps {
+    /*stage('Convertation of Testing Results') {
+      steps {
           k6JsonToJunitXml("${JENKINS_HOME}/results-0.json", "${JENKINS_HOME}/output-0.xml")
       }
       post {
 				  always {							
 					    junit(
                   allowEmptyResults: true,
-                  testResults: "${JENKINS_HOME}/output.xml" //'**/test-reports/*.xml'
+                  testResults: "${JENKINS_HOME}/output.xml" 
                   )
               }        
-      }   */         
-    }
+      }           
+    }*/
 
   }
 }
