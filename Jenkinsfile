@@ -14,9 +14,9 @@ pipeline {
   }
   agent {
     kubernetes {
-      label 'k6'
+      label 'k6node'
       yamlFile 'KubernetesPod.yaml'
-      defaultContainer 'k6' 
+      //defaultContainer 'k6' 
     }
   }
   stages {    
@@ -36,7 +36,7 @@ pipeline {
           echo "Duration: ${params.DURATION}"
           for (int i = 0; i < params.POD_COUNT.toInteger(); i++) {
             stages[i] = {
-              node('k6') {
+              node('k6node') {
                 stage("Stage-${i}") {
                   container('k6') {
                     //sh "wget --header='Authorization: token $GIT_TOKEN' --header='Accept: application/vnd.github.v3.raw' ${params.GIT_RAW_FILE} --output-document=pt.js"
@@ -44,7 +44,7 @@ pipeline {
                     //sh "k6 run pt.js --duration ${params.DURATION} --vus ${params.VIRTUAL_USER} --out influxdb=${params.INFLUX_DB}"
                     //sh "k6 run pt.js --duration ${params.DURATION} --vus ${params.VIRTUAL_USER} --out ${JENKINS_HOME}/results.json"
                     
-                    //echo 'Running K6 performance tests...'
+                    echo 'Running K6 performance tests...'
                     sh "k6 run ${params.GIT_RAW_FILE}  --duration ${params.DURATION} --vus ${params.VIRTUAL_USER} "
                     sh "k6 run script.js "
 
