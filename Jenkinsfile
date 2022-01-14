@@ -15,7 +15,7 @@ pipeline {
   agent {
     kubernetes {
       //label 'k6node'
-      yamlFile 'KubernetesPod2.yaml'
+      yamlFile 'KubernetesPod.yaml'
     }
   }
   stages {    
@@ -43,10 +43,10 @@ pipeline {
                     //sh "k6 run pt.js --duration ${params.DURATION} --vus ${params.VIRTUAL_USER} --out influxdb=${params.INFLUX_DB}"
                     //sh "k6 run pt.js --duration ${params.DURATION} --vus ${params.VIRTUAL_USER} --out ${JENKINS_HOME}/results.json"
                     
-                    //echo 'Running K6 performance tests...'
-                    //sh "k6 run ${params.GIT_RAW_FILE}  --duration ${params.DURATION} --vus ${params.VIRTUAL_USER} "
-                    //sh "k6 run loadtests/performance-test.js"                    
-                    //sh "k6 run --out json=${JENKINS_HOME}/results-${i}.json loadtests/performance-test.js "
+                    echo 'Running K6 performance tests...'
+                    sh "k6 run ${params.GIT_RAW_FILE}  --duration ${params.DURATION} --vus ${params.VIRTUAL_USER} "
+                    sh "k6 run loadtests/performance-test.js"                    
+                    sh "k6 run --out json=${JENKINS_HOME}/results-${i}.json loadtests/performance-test.js "
 
                   }
                 }
