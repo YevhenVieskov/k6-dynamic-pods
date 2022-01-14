@@ -83,6 +83,8 @@ You can verify each pod is running the k6 script by attaching into the shell of 
 
 15. Differences between Sidecar and Ambassador and Adapter pattern https://stackoverflow.com/questions/59451056/differences-between-sidecar-and-ambassador-and-adapter-pattern
 
+16. https://stackoverflow.com/questions/58646823/parallel-jenkins-agents-at-kubernetes-with-kubernetes-plugin
+
 Multi-container design patterns
 
 Sidecar pattern

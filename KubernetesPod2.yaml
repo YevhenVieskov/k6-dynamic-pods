@@ -1,0 +1,50 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: k6node ## since this file is cached as Jenkins node template, change this name when below attributes are updated, otherwise it will keep using old ones!!! Need to update Jenkinsfile also.
+  labels:
+    app: k6
+spec:
+  namespace: jenkins
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          namespace: jenkins
+          topologyKey: kubernetes.io/hostname
+          labelSelector:
+            matchExpressions:
+              - key: app
+                operator: In
+                values:
+                  - k6
+                  - k6node
+  containers:
+  - name: k6
+    image: loadimpact/k6
+    args:
+      - 'run'
+      - 'https://raw.githubusercontent.com/benc-uk/k6-prometheus-exporter/main/load-tests/generic.js'
+      - '--address'
+      - '0.0.0.0:6565' # Important otherwise we can't connect
+    env:
+      # URL to test against - CHANGE THIS!!
+      - name: TARGET_URL
+        value: 'https://benc.dev/minis/descent-done/i1.png'
+      # The ramp up time, e.g. 20s or 3m
+      - name: RAMP_TIME
+        value: '5m'
+      # The rest of the time the test runs
+      - name: RUN_TIME
+        value: '10m'
+      # Number of users to ramp up to and run for the RUN_TIME
+      - name: USER_COUNT
+        value: '50'
+    resources:
+      requests:
+          cpu: "100m"
+          memory: "256Mi"
+    tty: true
+    securityContext: ## <-- When define USER in Dockerfile, securityContext should be added with root user, so that shell script will not hang in container
+      runAsUser: 0
