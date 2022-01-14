@@ -14,7 +14,7 @@ pipeline {
   }
   agent {
     kubernetes {
-      //label 'k6node'
+      label 'k6'
       yamlFile 'KubernetesPod.yaml'
       defaultContainer 'k6' 
     }
@@ -36,7 +36,7 @@ pipeline {
           echo "Duration: ${params.DURATION}"
           for (int i = 0; i < params.POD_COUNT.toInteger(); i++) {
             stages[i] = {
-              node('k6node') {
+              node('k6') {
                 stage("Stage-${i}") {
                   container('k6') {
                     //sh "wget --header='Authorization: token $GIT_TOKEN' --header='Accept: application/vnd.github.v3.raw' ${params.GIT_RAW_FILE} --output-document=pt.js"
