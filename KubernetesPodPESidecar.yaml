@@ -33,3 +33,10 @@ spec:
     tty: true
     securityContext: ## <-- When define USER in Dockerfile, securityContext should be added with root user, so that shell script will not hang in container
       runAsUser: 0
+
+  # Adds the k6-prometheus-exporter sidecar
+  - name: k6-exporter
+    image: ghcr.io/benc-uk/k6-prometheus-exporter:latest
+    imagePullPolicy: Always
+    ports:
+      - containerPort: 2112    
