@@ -15,7 +15,8 @@ pipeline {
   agent {
     kubernetes {
       label 'k6node'
-      yamlFile 'KubernetesPod.yaml'
+      //yamlFile 'KubernetesPod.yaml'
+      yamlFile 'KubernetesPodPESidecar.yaml'
       //defaultContainer 'k6' 
     }
   }
