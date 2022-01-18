@@ -48,6 +48,8 @@ pipeline {
                     echo 'Running K6 performance tests...'
                     sh "k6 run ${params.GIT_RAW_FILE}  --duration ${params.DURATION} --vus ${params.VIRTUAL_USER} "
                     sh "k6 run script.js "
+                    sh "k6 run --out json=results.json script.js"
+
 
                   }
                 }
@@ -59,19 +61,21 @@ pipeline {
       }
     }
 
-    /*stage('Convertation of Testing Results') {
-      steps {
-          k6JsonToJunitXml("${JENKINS_HOME}/results-0.json", "${JENKINS_HOME}/output-0.xml")
-      }
-      post {
-				  always {							
-					    junit(
-                  allowEmptyResults: true,
-                  testResults: "${JENKINS_HOME}/output.xml" 
-                  )
-              }        
-      }           
-    }*/
+    stage('Convertation of Testing Results') {
+            steps {
+                k6JsonToJunitXml("${env.JENKINS_HOME}/workspace/${env.JOB_NAME}/results.json", "${env.JENKINS_HOME}/workspace/${env.JOB_NAME}/output.xml")
+            }
+             post {
+				always {							
+					junit(
+                        allowEmptyResults: true,
+                        testResults: "${env.JENKINS_HOME}/workspace/${env.JOB_NAME}/output.xml" 
+                    )
+                }        
+            }
+
+            
+        }
 
   }
 }
