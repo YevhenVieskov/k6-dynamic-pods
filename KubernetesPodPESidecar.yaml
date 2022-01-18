@@ -6,12 +6,6 @@ metadata:
     app: k6
 spec:
   namespace: jenkins
-    template:
-      metadata:
-        # These are important, for Prometheus to pick up the data
-        annotations:
-          prometheus.io/port: '2112'
-          prometheus.io/scrape: 'true'
   affinity:
     podAntiAffinity:
       preferredDuringSchedulingIgnoredDuringExecution:
@@ -28,8 +22,10 @@ spec:
                   - k6node
   containers:
   - name: k6
-    image: loadimpact/k6:latest         #your.docker_registry.com/your_org/k6:your_image_version
-    command: ["tail","-f","/dev/null"]
+    image: loadimpact/k6:latest         #your.docker_registry.com/your_org/k6:your_image_version  
+    #args: ['run', 'https://raw.githubusercontent.com/loadimpact/k6/master/samples/http_get.js']
+    #command: ["tail","-f","/dev/null"]
+    command: ["/bin/sh"]
     resources:
       requests:
           cpu: "100m"
@@ -37,8 +33,3 @@ spec:
     tty: true
     securityContext: ## <-- When define USER in Dockerfile, securityContext should be added with root user, so that shell script will not hang in container
       runAsUser: 0
-  - name: k6-exporter
-    image: ghcr.io/benc-uk/k6-prometheus-exporter:latest
-    imagePullPolicy: Always
-    ports:
-      - containerPort: 2112
