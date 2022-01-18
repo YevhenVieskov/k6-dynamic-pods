@@ -15,7 +15,7 @@ pipeline {
   agent {
     kubernetes {
       label 'k6node'
-      yamlFile 'KubernetesPod2.yaml'
+      yamlFile 'KubernetesPod.yaml'
       //defaultContainer 'k6' 
     }
   }
@@ -45,8 +45,8 @@ pipeline {
                     //sh "k6 run pt.js --duration ${params.DURATION} --vus ${params.VIRTUAL_USER} --out ${JENKINS_HOME}/results.json"
                     
                     echo 'Running K6 performance tests...'
-                    //sh "k6 run ${params.GIT_RAW_FILE}  --duration ${params.DURATION} --vus ${params.VIRTUAL_USER} "
-                    //sh "k6 run script.js "
+                    sh "k6 run ${params.GIT_RAW_FILE}  --duration ${params.DURATION} --vus ${params.VIRTUAL_USER} "
+                    sh "k6 run script.js "
 
                   }
                 }
