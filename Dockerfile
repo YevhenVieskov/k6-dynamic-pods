@@ -8,7 +8,9 @@ RUN go get go.k6.io/k6
 #RUN CGO_ENABLED=0 go install -a -trimpath -ldflags "-s -w -X go.k6.io/k6/lib/consts.VersionDetails=$(date -u +"%FT%T%z")/$(git describe --always --long --dirty)" 
 #RUN go install -trimpath github.com/k6io/xk6/cmd/xk6@latest
 RUN go install go.k6.io/xk6/cmd/xk6@latest
-RUN xk6 build --with github.com/avitalique/xk6-file@latest github.com/grafana/xk6-output-prometheus-remote github.com/k6io/xk6-kubernetes
+RUN xk6 build --with github.com/avitalique/xk6-file@latest 
+RUN xk6 build --with github.com/grafana/xk6-output-prometheus-remote 
+RUN xk6 build --with github.com/k6io/xk6-kubernetes
 
 RUN cp k6 $GOPATH/bin/k6
 
