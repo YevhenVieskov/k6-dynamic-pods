@@ -12,56 +12,70 @@ pipeline {
   environment {
     GIT_TOKEN = credentials('github-token')
   }
-  agent {
-    kubernetes {
-      label 'k6node'
-      //yamlFile 'KubernetesPod.yaml'
-      yamlFile 'KubernetesPodPESidecar.yaml'
-      //defaultContainer 'k6' 
-    }
-  }
+  
   stages {    
 
     stage("Checkout") {			 
-      steps {
-          git credentialsId: 'jenkins-kub-jenkins-monitor', url: 'https://github.com/YevhenVieskov/k6-dynamic-pods.git', branch: 'main' 
+        steps {
+            git credentialsId: 'jenkins-kub-jenkins-monitor', url: 'https://github.com/YevhenVieskov/k6-dynamic-pods.git', branch: 'main' 
         }
-	  } 
+	} 
 
-    stage('Performance Test') {
-      steps {
-        script {
-          def stages = [: ]
-          echo "Pods count: ${params.POD_COUNT}"
-          echo "VUs: ${params.VIRTUAL_USER}"
-          echo "Duration: ${params.DURATION}"
-          for (int i = 0; i < params.POD_COUNT.toInteger(); i++) {
-            stages[i] = {
-              node('k6node') {
-                stage("Stage-${i}") {
-                  container('k6') {
-                    //sh "wget --header='Authorization: token $GIT_TOKEN' --header='Accept: application/vnd.github.v3.raw' ${params.GIT_RAW_FILE} --output-document=pt.js"
+
+   stage('Perfomance Test'){
+        parallel {
+            stage("Branch 1") {
+                agent {
+                    kubernetes {
+                        defaultContainer 'k6'
+                        yamlFile 'KubernetesPodPESidecar.yaml'                 
+                    }
+                }
+
+                steps {
+                    container('<tests-container-name>') {
+                        //sh "wget --header='Authorization: token $GIT_TOKEN' --header='Accept: application/vnd.github.v3.raw' ${params.GIT_RAW_FILE} --output-document=pt.js"
                     //wget --http-user=USERNAME --http-password=PASSWORD http://SOMETURLTOFILE
                     //sh "k6 run pt.js --duration ${params.DURATION} --vus ${params.VIRTUAL_USER} --out influxdb=${params.INFLUX_DB}"
                     //sh "k6 run pt.js --duration ${params.DURATION} --vus ${params.VIRTUAL_USER} --out ${JENKINS_HOME}/results.json"
                     
                     echo 'Running K6 performance tests...'
-                    //sh "k6 run ${params.GIT_RAW_FILE}  --duration ${params.DURATION} --vus ${params.VIRTUAL_USER} "
+                    sh "k6 run ${params.GIT_RAW_FILE}  --duration ${params.DURATION} --vus ${params.VIRTUAL_USER} "
                     sh "k6 run script.js "
                     sh "k6 run --out json=results.json script.js"
 
-
-                  }
+                    }
                 }
-              }
             }
-          }
-          //parallel stages
-         }
-      }
+
+            stage("Branch 2") {
+                agent {
+                    kubernetes {
+                        defaultContainer 'k6'
+                        yamlFile 'KubernetesPodPESidecar.yaml'                 
+                    }
+                }
+
+                steps {
+                    container('k6') {                      
+                    
+                        echo 'Running K6 performance tests...'
+                        sh "k6 run ${params.GIT_RAW_FILE}  --duration ${params.DURATION} --vus ${params.VIRTUAL_USER} "
+                        sh "k6 run script.js "
+                        sh "k6 run --out json=results.json script.js"
+
+                    }
+                }
+            }
+
+        
+        }
     }
 
-    /*stage('Convertation of Testing Results') {
+    
+    
+
+    stage('Convertation of Testing Results') {
             steps {
                 k6JsonToJunitXml("${env.JENKINS_HOME}/workspace/${env.JOB_NAME}/results.json", "${env.JENKINS_HOME}/workspace/${env.JOB_NAME}/output.xml")
             }
@@ -75,7 +89,7 @@ pipeline {
             }
 
             
-        }*/
+        }
 
   }
 }

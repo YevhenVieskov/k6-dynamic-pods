@@ -31,7 +31,7 @@ The idea here is to prepare a platform that uses the Kubernetes plugin for Jenki
 
 The platform can evenly distribute workloads across all available nodes in the cluster to better simulate real-world scenarios without stressing computing resources and network bandwidth on a single machine. 
 
-![Jenkins Kubernetes Dynamic Pods Architecture](./img/Dynamically-add-pod-to-run-performance-test-Copy-1-1024x643.png "San Juan Mountains")
+![Jenkins Kubernetes Dynamic Pods Architecture](./img/Dynamically-add-pod-to-run-performance-test-Copy-1-1024x643.png )
 
 For each team that wants to use the platform, the following attributes are provided as necessary:
 
