@@ -13,6 +13,13 @@ pipeline {
     GIT_TOKEN = credentials('github-token')
   }
   
+   agent {
+        kubernetes {
+            defaultContainer 'k6'
+            yamlFile 'KubernetesPodPESidecar.yaml'                 
+        }
+    } 
+
   stages {    
 
     stage("Checkout") {			 
@@ -21,12 +28,7 @@ pipeline {
         }
 	}
 
-    agent {
-        kubernetes {
-            defaultContainer 'k6'
-            yamlFile 'KubernetesPodPESidecar.yaml'                 
-        }
-    } 
+    
 
 
    stage('Perfomance Test'){
