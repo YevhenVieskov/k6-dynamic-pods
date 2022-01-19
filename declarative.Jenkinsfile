@@ -19,7 +19,14 @@ pipeline {
         steps {
             git credentialsId: 'jenkins-kub-jenkins-monitor', url: 'https://github.com/YevhenVieskov/k6-dynamic-pods.git', branch: 'main' 
         }
-	} 
+	}
+
+    agent {
+        kubernetes {
+            defaultContainer 'k6'
+            yamlFile 'KubernetesPodPESidecar.yaml'                 
+        }
+    } 
 
 
    stage('Perfomance Test'){
