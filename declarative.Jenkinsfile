@@ -13,12 +13,14 @@ pipeline {
     GIT_TOKEN = credentials('github-token')
   }
   
-   agent {
+   /*agent {
         kubernetes {
             defaultContainer 'k6'
             yamlFile 'KubernetesPodPESidecar.yaml'                 
         }
-    } 
+    } */
+
+    agent any
 
   stages {    
 
@@ -42,7 +44,7 @@ pipeline {
                 }
 
                 steps {
-                    container('<tests-container-name>') {
+                    container('k6') {
                         //sh "wget --header='Authorization: token $GIT_TOKEN' --header='Accept: application/vnd.github.v3.raw' ${params.GIT_RAW_FILE} --output-document=pt.js"
                     //wget --http-user=USERNAME --http-password=PASSWORD http://SOMETURLTOFILE
                     //sh "k6 run pt.js --duration ${params.DURATION} --vus ${params.VIRTUAL_USER} --out influxdb=${params.INFLUX_DB}"
