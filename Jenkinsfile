@@ -39,8 +39,8 @@ pipeline {
             echo"I am in cycle"
             stages[i] = {
               //node('k6node') {
-                stage("Stage-${i}") {
-                  sh"sleep 3600"
+                //stage("Stage-${i}") {
+                  //sh"sleep 3600"
                   container('k6') {
                     //sh "wget --header='Authorization: token $GIT_TOKEN' --header='Accept: application/vnd.github.v3.raw' ${params.GIT_RAW_FILE} --output-document=pt.js"
                     //wget --http-user=USERNAME --http-password=PASSWORD http://SOMETURLTOFILE
@@ -56,7 +56,7 @@ pipeline {
 
 
                   }
-                }
+                //}
               //}
             }
           }
