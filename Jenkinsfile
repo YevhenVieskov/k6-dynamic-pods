@@ -28,6 +28,8 @@ pipeline {
         }
 	  } 
 
+
+
     stage('Performance Test') {
       steps {
         script {
@@ -38,8 +40,8 @@ pipeline {
           for (int i = 0; i < params.POD_COUNT.toInteger(); i++) {
             echo"I am in cycle"
             stages[i] = {
-              //node('k6node') {
-                //stage("Stage-${i}") {
+              node('k6node') {
+                stage("Stage-${i}") {
                   //sh"sleep 3600"
                   container('k6') {
                     //sh "wget --header='Authorization: token $GIT_TOKEN' --header='Accept: application/vnd.github.v3.raw' ${params.GIT_RAW_FILE} --output-document=pt.js"
@@ -49,18 +51,18 @@ pipeline {
                       stage ('Inside Container') {
                           echo 'Running K6 performance tests...'
                     //sh "k6 run ${params.GIT_RAW_FILE}  --duration ${params.DURATION} --vus ${params.VIRTUAL_USER} "
-                       //sh "k6 run script.js "
+                          sh "k6 run script.js "
                     //sh "k6 run --out json=results.json script.js"
                           sh"sleep 3600"
                       }
 
 
                   }
-                //}
-              //}
+                }
+              }
             }
           }
-          //parallel stages
+          parallel stages
          }
       }
     }
