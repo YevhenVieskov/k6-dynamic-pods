@@ -38,7 +38,7 @@ pipeline {
           for (int i = 0; i < params.POD_COUNT.toInteger(); i++) {
             echo"I am in cycle"
             stages[i] = {
-              node('k6node') {
+              //node('k6node') {
                 stage("Stage-${i}") {
                   sh"sleep 3600"
                   container('k6') {
@@ -57,7 +57,7 @@ pipeline {
 
                   }
                 }
-              }
+              //}
             }
           }
           //parallel stages
