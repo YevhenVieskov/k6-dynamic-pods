@@ -17,7 +17,7 @@ pipeline {
       label 'k6node'
       //yamlFile 'KubernetesPod.yaml'
       yamlFile 'KubernetesPodPESidecar.yaml'
-      //defaultContainer 'k6' 
+      defaultContainer 'k6' 
     }
   }
   stages {    
@@ -44,11 +44,13 @@ pipeline {
                     //wget --http-user=USERNAME --http-password=PASSWORD http://SOMETURLTOFILE
                     //sh "k6 run pt.js --duration ${params.DURATION} --vus ${params.VIRTUAL_USER} --out influxdb=${params.INFLUX_DB}"
                     //sh "k6 run pt.js --duration ${params.DURATION} --vus ${params.VIRTUAL_USER} --out ${JENKINS_HOME}/results.json"
-                    
-                    echo 'Running K6 performance tests...'
+                      stage ('Inside Container') {
+                          echo 'Running K6 performance tests...'
                     //sh "k6 run ${params.GIT_RAW_FILE}  --duration ${params.DURATION} --vus ${params.VIRTUAL_USER} "
-                    sh "k6 run script.js "
-                    sh "k6 run --out json=results.json script.js"
+                       //sh "k6 run script.js "
+                    //sh "k6 run --out json=results.json script.js"
+                          sh"sleep 3600"
+                      }
 
 
                   }
