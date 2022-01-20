@@ -36,6 +36,7 @@ pipeline {
           echo "VUs: ${params.VIRTUAL_USER}"
           echo "Duration: ${params.DURATION}"
           for (int i = 0; i < params.POD_COUNT.toInteger(); i++) {
+            echo"I am in cycle"
             stages[i] = {
               node('k6node') {
                 stage("Stage-${i}") {
