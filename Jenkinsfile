@@ -14,7 +14,7 @@ pipeline {
   }
   agent {
     kubernetes {
-      label 'k6node'
+      //label 'k6node'
       //yamlFile 'KubernetesPod.yaml'
       yamlFile 'KubernetesPodPESidecar.yaml'
       defaultContainer 'k6' 
@@ -38,7 +38,7 @@ pipeline {
           for (int i = 0; i < params.POD_COUNT.toInteger(); i++) {
             echo"I am in cycle"
             stages[i] = {
-              node('k6node') {
+              node('k6') {
                 stage("Stage-${i}") {
                   sh"sleep 3600"
                   container('k6') {
