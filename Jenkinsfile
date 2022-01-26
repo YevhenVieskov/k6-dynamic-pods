@@ -33,7 +33,7 @@ pipeline {
     stage('Performance Test') {
       steps {
         script {
-          def stages = [: ]
+          def stages = [:]
           echo "Pods count: ${params.POD_COUNT}"
           echo "VUs: ${params.VIRTUAL_USER}"
           echo "Duration: ${params.DURATION}"
@@ -48,13 +48,12 @@ pipeline {
                     //wget --http-user=USERNAME --http-password=PASSWORD http://SOMETURLTOFILE
                     //sh "k6 run pt.js --duration ${params.DURATION} --vus ${params.VIRTUAL_USER} --out influxdb=${params.INFLUX_DB}"
                     //sh "k6 run pt.js --duration ${params.DURATION} --vus ${params.VIRTUAL_USER} --out ${JENKINS_HOME}/results.json"
-                      stage ('Inside Container') {
+                      //stage ('Inside Container') {
                           echo 'Running K6 performance tests...'
-                    //sh "k6 run ${params.GIT_RAW_FILE}  --duration ${params.DURATION} --vus ${params.VIRTUAL_USER} "
-                          sh "k6 run script.js "
-                    //sh "k6 run --out json=results.json script.js"
-                          sh"sleep 3600"
-                      }
+                          sh "k6 run ${params.GIT_RAW_FILE}  --duration ${params.DURATION} --vus ${params.VIRTUAL_USER} "
+                          //sh "k6 run script.js "
+                    
+                     // }
 
 
                   }
@@ -67,21 +66,7 @@ pipeline {
       }
     }
 
-    /*stage('Convertation of Testing Results') {
-            steps {
-                k6JsonToJunitXml("${env.JENKINS_HOME}/workspace/${env.JOB_NAME}/results.json", "${env.JENKINS_HOME}/workspace/${env.JOB_NAME}/output.xml")
-            }
-             post {
-				always {							
-					junit(
-                        allowEmptyResults: true,
-                        testResults: "${env.JENKINS_HOME}/workspace/${env.JOB_NAME}/output.xml" 
-                    )
-                }        
-            }
-
-            
-        }*/
+    
 
   }
 }

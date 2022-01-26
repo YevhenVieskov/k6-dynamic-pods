@@ -84,23 +84,6 @@ pipeline {
     }
 
     
-    
-
-    /*stage('Convertation of Testing Results') {
-            steps {
-                k6JsonToJunitXml("${env.JENKINS_HOME}/workspace/${env.JOB_NAME}/results.json", "${env.JENKINS_HOME}/workspace/${env.JOB_NAME}/output.xml")
-            }
-             post {
-				always {							
-					junit(
-                        allowEmptyResults: true,
-                        testResults: "${env.JENKINS_HOME}/workspace/${env.JOB_NAME}/output.xml" 
-                    )
-                }        
-            }
-
-            
-        }*/
 
   }
 }
