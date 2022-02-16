@@ -9,9 +9,7 @@ pipeline {
     string(name: 'VIRTUAL_USER', defaultValue: '10', description: 'this will overwrite VUs value in script')
     //string(name: 'INFLUX_DB', defaultValue: 'http://your_influxDB_IP:_PORT/your_influxDB_name', description: 'change the influx URL or DB name as you wish')
   }
-  environment {
-   // GIT_TOKEN = credentials('github-token')
-  }
+  
   agent {
     kubernetes {
       label 'k6node'
