@@ -10,7 +10,7 @@ pipeline {
     //string(name: 'INFLUX_DB', defaultValue: 'http://your_influxDB_IP:_PORT/your_influxDB_name', description: 'change the influx URL or DB name as you wish')
   }
   environment {
-    GIT_TOKEN = credentials('github-token')
+   // GIT_TOKEN = credentials('github-token')
   }
   agent {
     kubernetes {
