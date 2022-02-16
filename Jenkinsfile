@@ -1,4 +1,4 @@
-@Library('k6jkmonitoring')_
+//@Library('k6jkmonitoring')_
 properties([pipelineTriggers([githubPush()])])
 
 pipeline {
