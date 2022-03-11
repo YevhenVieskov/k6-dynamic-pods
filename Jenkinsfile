@@ -7,7 +7,7 @@ pipeline {
     string(name: 'GIT_RAW_FILE', defaultValue: 'https://raw.githubusercontent.com/loadimpact/k6/master/samples/http_get.js', description: 'raw file of the k6 performance script in git')
     string(name: 'DURATION', defaultValue: '5m', description: 'this will overwrite duration value in script')
     string(name: 'VIRTUAL_USER', defaultValue: '10', description: 'this will overwrite VUs value in script')
-    //string(name: 'INFLUX_DB', defaultValue: 'http://your_influxDB_IP:_PORT/your_influxDB_name', description: 'change the influx URL or DB name as you wish')
+    string(name: 'INFLUX_DB', defaultValue: 'http://192.168.49.2:31234/k6-monitoring', description: 'change the influx URL or DB name as you wish')
   }
   
   agent {
@@ -40,18 +40,18 @@ pipeline {
             stages[i] = {
               node('k6node') {
                 stage("Stage-${i}") {
-                  //sh"sleep 3600"
+                  
                   container('k6') {
                     //sh "wget --header='Authorization: token $GIT_TOKEN' --header='Accept: application/vnd.github.v3.raw' ${params.GIT_RAW_FILE} --output-document=pt.js"
                     //wget --http-user=USERNAME --http-password=PASSWORD http://SOMETURLTOFILE
                     //sh "k6 run pt.js --duration ${params.DURATION} --vus ${params.VIRTUAL_USER} --out influxdb=${params.INFLUX_DB}"
                     //sh "k6 run pt.js --duration ${params.DURATION} --vus ${params.VIRTUAL_USER} --out ${JENKINS_HOME}/results.json"
-                      //stage ('Inside Container') {
+                      
                           echo 'Running K6 performance tests...'
-                          sh "k6 run ${params.GIT_RAW_FILE}  --duration ${params.DURATION} --vus ${params.VIRTUAL_USER} "
+                          sh "k6 run ${params.GIT_RAW_FILE}  --duration ${params.DURATION} --vus ${params.VIRTUAL_USER}  --out influxdb=${params.INFLUX_DB}"
                           //sh "k6 run script.js "
                     
-                     // }
+                     
 
 
                   }
