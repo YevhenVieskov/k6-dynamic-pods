@@ -22,7 +22,7 @@ spec:
                   - k6node
   containers:
   - name: k6
-    image: loadimpact/k6
+    image: vieskov1980/k6influxdb #loadimpact/k6
     args:
       - 'run'
       - 'https://raw.githubusercontent.com/benc-uk/k6-prometheus-exporter/main/load-tests/generic.js'
