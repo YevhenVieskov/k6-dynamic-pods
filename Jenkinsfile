@@ -10,7 +10,7 @@ pipeline {
     string(name: 'INFLUX_DB', defaultValue: 'http://192.168.49.2:31234/k6-monitoring', description: 'change the influx URL or DB name as you wish')
     string(name: 'INFLUXDB_ORGANIZATION', defaultValue: 'vieskov', description: 'change the influx organisation name as you wish')
     string(name: 'INFLUXDB_BUCKET', defaultValue: 'k6-monitoring', description: 'change the influx bucket name as you wish')
-    string(name: 'INFLUXDB_TOKEN', defaultValue: 'LlLkXktPwNGYp_Qyoq3zaabF4Wtg3uFjasZy7FtE7Y0RtxpYt3ump4s90woLbkP-LvDGc8Ml8HV-NfQEXPPcXA==', description: 'change the influx token as you wish')
+    string(name: 'INFLUXDB_TOKEN', defaultValue: 'WFAsS4Gp7eZ3gRkuYW-wJszOgm9cfaxntSQFDN4dtXtEqrg48RmK5qbtwk8pahgrs9DYicAInQ7xAd52lNfCvA==', description: 'change the influx token as you wish')
   }
   
   agent {
